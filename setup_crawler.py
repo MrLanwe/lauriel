@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 from bs4 import BeautifulSoup
-import urllib2
+import urllib3
 import re
 
 
@@ -9,8 +9,10 @@ def gather_webaddr(url):
 
     """ Input url, output list of possible website addresses """
 
-    html = urllib2.urlopen(url)
-    soup = BeautifulSoup(html, from_encoding=html.info().getparam('charset'))
+    http = urllib3.PoolManager()
+    html = http.request('GET', url)
+    soup = BeautifulSoup(html.data,
+                         from_encoding=html.info().getparam('charset'))
     addr = [link['href'] for link in soup.find_all('a', href=True)]
     return addr
 
