@@ -11,8 +11,7 @@ def gather_webaddr(url):
 
     http = urllib3.PoolManager()
     html = http.request('GET', url)
-    soup = BeautifulSoup(html.data,
-                         from_encoding=html.info().getparam('charset'))
+    soup = BeautifulSoup(html.data, 'html.parser')
     addr = [link['href'] for link in soup.find_all('a', href=True)]
     return addr
 

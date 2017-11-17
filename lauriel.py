@@ -10,9 +10,10 @@ def lauriel():
         try:
             raw_websites = gather_webaddr(starting_website)
             validated_websites = validate_webaddr(raw_websites)
-            with open("websites.csv", "wb") as csvfile:
-                f = csv.writer(csvfile, delimeter=',')
+            with open("websites.csv", "w") as csvfile:
+                f = csv.writer(csvfile, delimiter=',')
                 f.writerow(validated_websites)
+            print(raw_websites)
         except (KeyboardInterrupt, SystemExit):
             print("KeyboardInterrupt has bit raised")
             break
