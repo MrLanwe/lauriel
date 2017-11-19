@@ -12,6 +12,9 @@ def lauriel():
 
     # TODO write a handler in validate_webaddr for website's that no longer
     # exist or are otherwise unreachable
+    # TODO instead of while true use while with counter with value specified by
+    # user or if not specified use default value ( maybe ask after default
+    # value is reached if the user would like to continue scanning )
 
     filename = 'websites.csv'
     urls_from_single_website = []
