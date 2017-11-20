@@ -26,6 +26,25 @@ def validate_webaddr(websites, pat=".*http.*"):
     return webs
 
 
+def check_if_websites_are_reachable(websites):
+
+    """
+    Input list of valid urls. Function checks if passed urls are reachable
+    """
+
+    http = urllib3.PoolManager()
+    reachable_urls = []
+
+    for url in websites:
+        html = http.request('GET', url)
+
+        if html.status == 200:
+            reachable_urls.append(url)
+        else:
+            print("{url} is unreachable".format(url=url))
+    return reachable_urls
+
+
 if __name__ == "__main__":
     print(gather_webaddr("http://surrounded.prv.pl"))
 
